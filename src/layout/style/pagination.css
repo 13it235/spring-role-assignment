@@ -1,0 +1,26 @@
+ul.pagination {
+  margin-top: 0;
+  margin-bottom: 0;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+ul.pagination li.page-item.active a.page-link {
+  color: black !important;
+  background-color: white !important;
+  border-color: #ced4da !important;
+}
+
+a.page-link {
+  padding: 0.75rem 1rem;
+  min-width: 3.5rem;
+  text-align: center;
+  box-shadow: none !important;
+  border-color: #ced4da !important;
+  color: black;
+  font-weight: 900;
+  font-size: 1rem;
+}
+
+a.page-link:hover {
+  background-color: lightgray;
+}
