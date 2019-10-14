@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import './style/search.css';
 
 class Search extends Component {
-  // handleInputChange(value) {
-  //   const { onSearch } = this.props;
-  //   onSearch(value);
-  // }
   render() {
     const { placeholder, onSearch } = this.props;
     return (

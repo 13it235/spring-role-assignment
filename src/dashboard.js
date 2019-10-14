@@ -83,7 +83,6 @@ class Dashboard extends Component {
         </header>
         <span>
           <Search placeholder="Search by first name" onSearch={this.handleSearch} />
-          {/* <Fragment>{currentPage + '-' + totalPages}</Fragment> */}
           <Fragment>{currentPage * 5 - 5 + 1 + '-' + currentPage * 5 + ' of ' + totalUsers}</Fragment>
         </span>
         <div className="table-container">

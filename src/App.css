@@ -1,5 +1,4 @@
 .App {
-  /* text-align: center; */
   min-height: 100vh;
 }
 
@@ -10,10 +9,6 @@
 .App-header {
   background-color: skyblue;
   height: 8vh;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; */
   text-align: left;
   padding-left: 20px;
   line-height: 2.2;
