@@ -21,6 +21,11 @@
   color: white;
 }
 
+.App-header i {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
 .App-link {
   color: #09d3ac;
 }
@@ -28,6 +33,13 @@
 .table-container,
 .paginate-container {
   margin: 20px;
+}
+
+.paginate-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
 }
 
 .table-container table {
@@ -55,19 +67,24 @@ tr:hover {
 }
 
 td a {
-  color: black;
+  color: #363738;
   text-decoration: none !important;
 }
 
 a:hover {
-  color: black !important;
+  color: #363738 !important;
 }
 
 .detail-container {
   margin: 20px;
 }
 
+.detail-container h3 {
+  padding-left: 25px;
+}
+
 .detail-container .userItem {
   border-bottom: 1px solid #bdc0c1;
   padding: 10px;
+  margin: 2px;
 }

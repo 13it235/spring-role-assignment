@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Axios from 'axios';
 import './App.css';
 import Search from './layout/search';
@@ -27,15 +27,17 @@ class Dashboard extends Component {
   }
 
   handleSearch = value => {
-    console.log('in app search value', value);
-    const { users } = this.state;
-    const lowercasedFilter = value.toLowerCase();
-    const filteredData = users.filter(user => {
-      // return Object.keys(item).some(key => item[key].toLowerCase().includes(lowercasedFilter));
-      return user['first_name'].toLowerCase().includes(lowercasedFilter);
-    });
-    console.log('filteredData', filteredData);
-    this.setState({ users: filteredData });
+    if (value.length > 0) {
+      const { users } = this.state;
+      const lowercasedFilter = value.toLowerCase();
+      const filteredData = users.filter(user => {
+        // return Object.keys(item).some(key => item[key].toLowerCase().includes(lowercasedFilter));
+        return user['first_name'].toLowerCase().includes(lowercasedFilter);
+      });
+      console.log('filteredData', filteredData);
+      const currentUsers = filteredData.slice(0, 0 + 5);
+      this.setState({ currentUsers });
+    }
   };
 
   onPageChanged = data => {
@@ -47,6 +49,21 @@ class Dashboard extends Component {
 
     this.setState({ currentPage, currentUsers, totalPages });
   };
+
+  compareBy(key) {
+    return function(a, b) {
+      if (a[key] < b[key]) return -1;
+      if (a[key] > b[key]) return 1;
+      return 0;
+    };
+  }
+
+  onSort(key) {
+    let arrayCopy = [...this.state.users];
+    arrayCopy.sort(this.compareBy(key));
+    const currentUsers = arrayCopy.slice(0, 0 + 5);
+    this.setState({ users: arrayCopy, currentUsers });
+  }
 
   goToDetails(id) {
     this.props.history.push(`/user/${id}`);
@@ -60,37 +77,44 @@ class Dashboard extends Component {
 
     return (
       <div className="App">
-        <header className="App-header">Data view</header>
-        <Search placeholder="Search by first name" onSearch={this.handleSearch} />
+        <header className="App-header">
+          <i className="fa fa-bars" />
+          Data view
+        </header>
+        <span>
+          <Search placeholder="Search by first name" onSearch={this.handleSearch} />
+          {/* <Fragment>{currentPage + '-' + totalPages}</Fragment> */}
+          <Fragment>{currentPage * 5 - 5 + 1 + '-' + currentPage * 5 + ' of ' + totalUsers}</Fragment>
+        </span>
         <div className="table-container">
           <table>
             <thead>
               <tr>
-                <th>
+                <th onClick={() => this.onSort('first_name')}>
                   <i className="fa fa-caret-down" />First Name
                 </th>
-                <th>
+                <th onClick={() => this.onSort('last_name')}>
                   <i className="fa fa-caret-down" />Last Name
                 </th>
-                <th>
+                <th onClick={() => this.onSort('company_name')}>
                   <i className="fa fa-caret-down" />Company Name
                 </th>
-                <th>
+                <th onClick={() => this.onSort('city')}>
                   <i className="fa fa-caret-down" />City
                 </th>
-                <th>
+                <th onClick={() => this.onSort('state')}>
                   <i className="fa fa-caret-down" />State
                 </th>
-                <th>
+                <th onClick={() => this.onSort('zip')}>
                   <i className="fa fa-caret-down" />Zip
                 </th>
-                <th>
+                <th onClick={() => this.onSort('email')}>
                   <i className="fa fa-caret-down" />Email
                 </th>
-                <th>
+                <th onClick={() => this.onSort('web')}>
                   <i className="fa fa-caret-down" />Web
                 </th>
-                <th>
+                <th onClick={() => this.onSort('age')}>
                   <i className="fa fa-caret-down" />Age
                 </th>
               </tr>

@@ -3,7 +3,9 @@ import React, { Component, Fragment } from 'react';
 class UserDetails extends Component {
   allUsers = [];
   state = {
-    user: null
+    user: null,
+    first_name: '',
+    last_name: ''
   };
 
   componentDidMount() {
@@ -16,27 +18,45 @@ class UserDetails extends Component {
   }
 
   getUser(id) {
-    const userFound = this.allUsers.filter(user => {
+    var temp;
+    var userFound = this.allUsers.filter(user => {
       return user.id == id;
     });
     console.log('user found', userFound);
-    this.setState({ user: userFound[0] });
+    userFound = userFound[0];
+    temp = {
+      Company: userFound['company_name'],
+      City: userFound['city'],
+      State: userFound['state'],
+      Zip: userFound['zip'],
+      Email: userFound['email'],
+      Web: userFound['web'],
+      Age: userFound['age']
+    };
+    this.setState({ first_name: userFound['first_name'] });
+    this.setState({ last_name: userFound['last_name'] });
+    this.setState({ user: temp });
   }
 
   render() {
-    const { user } = this.state;
+    const { user, first_name, last_name } = this.state;
     return (
-      <div className="detail-container">
-        <h5>{user && user.first_name + ' ' + user.last_name}</h5>
-        {user &&
-          Object.keys(user).map((key, index) => {
-            return (
-              <div className="row" key={index}>
-                <div className="col-sm-6 text-left">{key}</div>
-                <div className="col-sm-6 text-right">{user[key]}</div>
-              </div>
-            );
-          })}
+      <div className="App">
+        <header className="App-header">
+          <i className="fa fa-arrow-left" onClick={() => this.props.history.push('/users')} />Data view
+        </header>
+        <div className="detail-container">
+          <h3>{user && first_name + ' ' + last_name}</h3>
+          {user &&
+            Object.keys(user).map((key, index) => {
+              return (
+                <div className="row userItem" key={index}>
+                  <div className="col-sm-6 text-left">{key}</div>
+                  <div className="col-sm-6 text-right">{user[key]}</div>
+                </div>
+              );
+            })}
+        </div>
       </div>
     );
   }
