@@ -73,74 +73,90 @@ class Dashboard extends Component {
     const { users, currentUsers, currentPage, totalPages } = this.state;
     const totalUsers = users.length;
 
-    if (totalUsers === 0) return null;
-
     return (
       <div className="App">
         <header className="App-header">
           <i className="fa fa-bars" />
           Data view
         </header>
-        <span>
-          <Search placeholder="Search by first name" onSearch={this.handleSearch} />
-          <Fragment>{currentPage * 5 - 5 + 1 + '-' + currentPage * 5 + ' of ' + totalUsers}</Fragment>
-        </span>
-        <div className="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th onClick={() => this.onSort('first_name')}>
-                  <i className="fa fa-caret-down" />First Name
-                </th>
-                <th onClick={() => this.onSort('last_name')}>
-                  <i className="fa fa-caret-down" />Last Name
-                </th>
-                <th onClick={() => this.onSort('company_name')}>
-                  <i className="fa fa-caret-down" />Company Name
-                </th>
-                <th onClick={() => this.onSort('city')}>
-                  <i className="fa fa-caret-down" />City
-                </th>
-                <th onClick={() => this.onSort('state')}>
-                  <i className="fa fa-caret-down" />State
-                </th>
-                <th onClick={() => this.onSort('zip')}>
-                  <i className="fa fa-caret-down" />Zip
-                </th>
-                <th onClick={() => this.onSort('email')}>
-                  <i className="fa fa-caret-down" />Email
-                </th>
-                <th onClick={() => this.onSort('web')}>
-                  <i className="fa fa-caret-down" />Web
-                </th>
-                <th onClick={() => this.onSort('age')}>
-                  <i className="fa fa-caret-down" />Age
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentUsers.length > 0 &&
-                currentUsers.map(user => {
-                  return (
-                    <tr key={user.id} onClick={() => this.goToDetails(user.id)}>
-                      <td>{user.first_name}</td>
-                      <td>{user.last_name}</td>
-                      <td>{user.company_name}</td>
-                      <td>{user.city}</td>
-                      <td>{user.state}</td>
-                      <td>{user.zip}</td>
-                      <td>{user.email}</td>
-                      <td>{user.web}</td>
-                      <td>{user.age}</td>
-                    </tr>
-                  );
-                })}
-            </tbody>
-          </table>
-        </div>
-        <div className="paginate-container">
-          <Pagination totalRecords={totalUsers} pageLimit={5} pageNeighbours={1} onPageChanged={this.onPageChanged} />
-        </div>
+        {!!totalUsers && (
+          <Fragment>
+            <span>
+              <Search placeholder="Search by first name" onSearch={this.handleSearch} />
+              <Fragment>{currentPage * 5 - 5 + 1 + '-' + currentPage * 5 + ' of ' + totalUsers}</Fragment>
+            </span>
+            <div className="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th onClick={() => this.onSort('first_name')}>
+                      <i className="fa fa-caret-down" />
+                      First Name
+                    </th>
+                    <th onClick={() => this.onSort('last_name')}>
+                      <i className="fa fa-caret-down" />
+                      Last Name
+                    </th>
+                    <th onClick={() => this.onSort('company_name')}>
+                      <i className="fa fa-caret-down" />
+                      Company Name
+                    </th>
+                    <th onClick={() => this.onSort('city')}>
+                      <i className="fa fa-caret-down" />
+                      City
+                    </th>
+                    <th onClick={() => this.onSort('state')}>
+                      <i className="fa fa-caret-down" />
+                      State
+                    </th>
+                    <th onClick={() => this.onSort('zip')}>
+                      <i className="fa fa-caret-down" />
+                      Zip
+                    </th>
+                    <th onClick={() => this.onSort('email')}>
+                      <i className="fa fa-caret-down" />
+                      Email
+                    </th>
+                    <th onClick={() => this.onSort('web')}>
+                      <i className="fa fa-caret-down" />
+                      Web
+                    </th>
+                    <th onClick={() => this.onSort('age')}>
+                      <i className="fa fa-caret-down" />
+                      Age
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {currentUsers.length > 0 &&
+                    currentUsers.map(user => {
+                      return (
+                        <tr key={user.id} onClick={() => this.goToDetails(user.id)}>
+                          <td>{user.first_name}</td>
+                          <td>{user.last_name}</td>
+                          <td>{user.company_name}</td>
+                          <td>{user.city}</td>
+                          <td>{user.state}</td>
+                          <td>{user.zip}</td>
+                          <td>{user.email}</td>
+                          <td>{user.web}</td>
+                          <td>{user.age}</td>
+                        </tr>
+                      );
+                    })}
+                </tbody>
+              </table>
+            </div>
+            <div className="paginate-container">
+              <Pagination
+                totalRecords={totalUsers}
+                pageLimit={5}
+                pageNeighbours={1}
+                onPageChanged={this.onPageChanged}
+              />
+            </div>
+          </Fragment>
+        )}
       </div>
     );
   }
