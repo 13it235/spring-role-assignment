@@ -1,6 +1,3 @@
-## Requirements:
-- Node setup
-
 ## Framework:
 This project was bootstrapped with [Create React App]
 
