@@ -3,13 +3,13 @@ ul.pagination {
   margin-bottom: 0;
 }
 
-ul.pagination li.page-item.active a.page-link {
+ul.pagination li.page-item.active span.page-link {
   color: black !important;
   background-color: white !important;
   border-color: skyblue !important;
 }
 
-a.page-link {
+span.page-link {
   padding: 0.75rem 1rem;
   min-width: 9.5rem;
   text-align: center;
@@ -20,6 +20,6 @@ a.page-link {
   font-size: 1rem;
 }
 
-a.page-link:hover {
+span.page-link:hover {
   background-color: lightgray;
 }

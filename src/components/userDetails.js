@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 class UserDetails extends Component {
   allUsers = [];
@@ -11,18 +11,16 @@ class UserDetails extends Component {
   componentDidMount() {
     let ifUsersExist = JSON.parse(localStorage.getItem('users'));
     if (ifUsersExist) {
-      // this.setState({ allUsers: ifUsersExist }); [].concat.apply([], ifUsersExist)
       this.allUsers = Array.prototype.concat.apply([], ifUsersExist);
-      this.getUser(this.props.match.params.id);
+      this.getUser(parseInt(this.props.match.params.id));
     } else this.props.history.push('/');
   }
 
   getUser(id) {
     var temp;
     var userFound = this.allUsers.filter(user => {
-      return user.id == id;
+      return user.id === id;
     });
-    console.log('user found', userFound);
     userFound = userFound[0];
     temp = {
       Company: userFound['company_name'],

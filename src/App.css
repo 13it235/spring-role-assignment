@@ -31,12 +31,14 @@
 }
 
 .paginate-container {
+  display: flex;
   align-items: center;
   display: flex;
   justify-content: center;
   position: fixed;
   bottom: 25%;
-  left: 17%;
+  left: 0;
+  right: 0;
 }
 
 .table-container table {

@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import Axios from 'axios';
-import './App.css';
-import Search from './layout/search';
-import Pagination from './layout/pagination';
+// import './App.css';
+import Search from '../layout/search';
+import Pagination from '../layout/pagination';
 
 class Dashboard extends Component {
   state = {
@@ -31,10 +31,8 @@ class Dashboard extends Component {
       const { users } = this.state;
       const lowercasedFilter = value.toLowerCase();
       const filteredData = users.filter(user => {
-        // return Object.keys(item).some(key => item[key].toLowerCase().includes(lowercasedFilter));
         return user['first_name'].toLowerCase().includes(lowercasedFilter);
       });
-      console.log('filteredData', filteredData);
       const currentUsers = filteredData.slice(0, 0 + 5);
       this.setState({ currentUsers });
     }

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Link, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import './App.css';
-import UserDetails from './userDetails';
-import Dashboard from './dashboard';
+import UserDetails from './components/userDetails';
+import Dashboard from './components/dashboard';
 
 class App extends Component {
   render() {

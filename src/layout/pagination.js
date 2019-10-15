@@ -128,26 +128,26 @@ class Pagination extends Component {
               if (page === LEFT_PAGE)
                 return (
                   <li key={index} className="page-item">
-                    <a className="page-link" href="#" onClick={this.handleMoveLeft}>
+                    <span className="page-link" onClick={this.handleMoveLeft}>
                       <i className="fa fa-caret-left" />
-                    </a>
+                    </span>
                   </li>
                 );
 
               if (page === RIGHT_PAGE)
                 return (
                   <li key={index} className="page-item">
-                    <a className="page-link" href="#" onClick={this.handleMoveRight}>
+                    <span className="page-link" onClick={this.handleMoveRight}>
                       <i className="fa fa-caret-right" />
-                    </a>
+                    </span>
                   </li>
                 );
 
               return (
                 <li key={index} className={`page-item${currentPage === page ? ' active' : ''}`}>
-                  <a className="page-link" href="#" onClick={this.handleClick(page)}>
+                  <span className="page-link" onClick={this.handleClick(page)}>
                     {page}
-                  </a>
+                  </span>
                 </li>
               );
             })}
